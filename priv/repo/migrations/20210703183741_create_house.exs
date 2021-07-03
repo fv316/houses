@@ -4,8 +4,8 @@ defmodule SaltHouses.Repo.Migrations.CreateHouse do
   def change do
     create table(:house, primary_key: false) do
       add :id, :id, primary_key: true
-      field(:name, :string, null: false)
-      field(:description, :string)
+      add :name, :string, null: false
+      add :description, :string
       timestamps()
     end
   end
