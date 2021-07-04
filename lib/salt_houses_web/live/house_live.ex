@@ -3,24 +3,35 @@ defmodule SaltHousesWeb.HouseLive do
 
   alias SaltHouses.House
 
-  def render(assigns) do
-    ~L"""
-    <h1>Leader Board</h1>
-    Current points: <%= @points %>
-    <br>
-    <button phx-click="increment">+</button>
-    <button phx-click="decrement">-</button>
-    """
-  end
+  # def render(assigns) do
+  #   IO.inspect(assigns)
+  #   ~L"""
+  #   <h1>Leader Board</h1>
+  #   Current points: <%= @points %>
+  #   <br>
+  #   <button phx-click="increment">+</button>
+  #   <button phx-click="decrement">-</button>
+  #   """
+  # end
 
   def mount(_params, _, socket) do
-    points = House.get_points()
-    {:ok, assign(socket, :points, points)}
+    House.subscribe()
+    {:ok, fetch(socket)}
   end
 
-  def handle_event("increment", _, socket),
-    do: {:noreply, assign(socket, :points, socket.assigns.points + 1)}
+  def handle_event("complete", %{"completed_activity" => %{"member_id" => mid, "activity_id" => aid}}, socket) do
+    House.complete_activity(mid, aid)
+    {:noreply, socket}
+  end
 
-  def handle_event("decrement", _, socket),
-    do: {:noreply, assign(socket, :points, socket.assigns.points - 1)}
+  def handle_info({SaltHouses.House, [:comleted_activity | _], _}, socket) do
+    {:noreply, fetch(socket)}
+  end
+
+  defp fetch(socket) do
+    points = House.get_points()
+    activities = House.get_activities()
+    members = House.get_members()
+    assign(socket, %{houses: points, activities: activities, members: members})
+  end
 end

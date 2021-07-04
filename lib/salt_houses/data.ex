@@ -75,4 +75,14 @@ defmodule SaltHouses.House.Data do
     |> change(payload)
     |> Repo.update()
   end
+
+  def get_house_points do
+    CompletedActivity
+    |> join(:inner, [c], a in Activity, on: c.activity_id == a.id)
+    |> join(:inner, [c, a], m in Member, on: c.member_id == m.id)
+    |> join(:inner, [c, a, m], h in House, on: m.house_id == h.id)
+    |> group_by([c, a, m, h], h.name)
+    |> select([c, a, m, h], %{name: h.name, points: sum(a.points)})
+    |> Repo.all()
+  end
 end

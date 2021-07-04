@@ -9,7 +9,7 @@ defmodule SaltHouses.House.Schemas.CompletedActivity do
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
   schema "completed_activity" do
-    field :form, :map, null: false
+    field :form, :map
 
     belongs_to :activity, Activity,
       foreign_key: :activity_id,
@@ -39,8 +39,7 @@ defmodule SaltHouses.House.Schemas.CompletedActivity do
     |> foreign_key_constraint(:activity_id)
     |> validate_required([
       :member_id,
-      :activity_id,
-      :form
+      :activity_id
     ])
   end
 end

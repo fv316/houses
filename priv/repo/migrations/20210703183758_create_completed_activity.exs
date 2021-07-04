@@ -6,7 +6,7 @@ defmodule SaltHouses.Repo.Migrations.CreateCompletedActivity do
       add :id, :binary_id, primary_key: true
       add :member_id, references(:member, on_delete: :nothing, type: :binary_id)
       add :activity_id, references(:activity, on_delete: :nothing, type: :binary_id)
-      add :form, :map, null: false
+      add :form, :map
 
       timestamps()
     end

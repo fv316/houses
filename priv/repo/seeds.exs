@@ -18,7 +18,33 @@ Repo.insert!(%House{name: "Duke Smith Team", description: "The mighty"})
 Repo.insert!(%House{name: "Fire Plato Team", description: "The sly"})
 Repo.insert!(%House{name: "Pigeon Hook Team", description: "The evil"})
 
-member = Repo.insert!(%Member{name: "Francisco Correia", date_of_birth: ~D"2000-12-12", house_id: 1})
-activity = Repo.insert!(%Activity{name: "House points", description: "Build the house system", form: %{"language" => "string"}, points: 10})
+member =
+  Repo.insert!(%Member{name: "Francisco Correia", date_of_birth: ~D"2000-12-12", house_id: 1})
 
-Repo.insert!(%CompletedActivity{member_id: member.id, activity_id: activity.id, form: %{"language" => "elixir"}})
+member_2 = Repo.insert!(%Member{name: "Denna Torra", date_of_birth: ~D"2000-02-12", house_id: 2})
+
+activity =
+  Repo.insert!(%Activity{
+    name: "House points",
+    description: "Build the house system",
+    form: %{"language" => "string"},
+    points: 10
+  })
+
+Repo.insert!(%CompletedActivity{
+  member_id: member.id,
+  activity_id: activity.id,
+  form: %{"language" => "Elixir"}
+})
+
+Repo.insert!(%CompletedActivity{
+  member_id: member.id,
+  activity_id: activity.id,
+  form: %{"language" => "F#"}
+})
+
+Repo.insert!(%CompletedActivity{
+  member_id: member_2.id,
+  activity_id: activity.id,
+  form: %{"language" => "Go"}
+})
