@@ -30,8 +30,8 @@ defmodule SaltHouses.House.Schemas.House do
   end
 
   def assign_house() do
-    case Data.get_house_count() do
-      {:ok, n} -> :rand.uniform(n)
+    case Data.get_all_houses() do
+      {:ok, houses} -> :rand.uniform(length(houses))
       e -> e
     end
   end

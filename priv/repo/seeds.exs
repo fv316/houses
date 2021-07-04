@@ -10,13 +10,15 @@
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
-
-alias SaltHouses.House.Schemas.{House, Member}
+alias SaltHouses.House.Schemas.{Activity, CompletedActivity, House, Member}
 alias SaltHouses.Repo
 
-Repo.insert!(%House{name: "House 1", description: "The brave"})
-Repo.insert!(%House{name: "House 2", description: "The mighty"})
-Repo.insert!(%House{name: "House 3", description: "The sly"})
-Repo.insert!(%House{name: "House 4", description: "The evil"})
+Repo.insert!(%House{name: "North Lair Team", description: "The brave"})
+Repo.insert!(%House{name: "Duke Smith Team", description: "The mighty"})
+Repo.insert!(%House{name: "Fire Plato Team", description: "The sly"})
+Repo.insert!(%House{name: "Pigeon Hook Team", description: "The evil"})
 
-Repo.insert!(%Member{name: "Kvothe Correia", date_of_birth: ~D"2000-12-12", house_id: 1})
+member = Repo.insert!(%Member{name: "Francisco Correia", date_of_birth: ~D"2000-12-12", house_id: 1})
+activity = Repo.insert!(%Activity{name: "House points", description: "Build the house system", form: %{"language" => "string"}, points: 10})
+
+Repo.insert!(%CompletedActivity{member_id: member.id, activity_id: activity.id, form: %{"language" => "elixir"}})

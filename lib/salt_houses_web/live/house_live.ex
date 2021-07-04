@@ -14,7 +14,7 @@ defmodule SaltHousesWeb.HouseLive do
   end
 
   def mount(_params, _, socket) do
-    points = House.get_house_points(12)
+    points = House.get_points()
     {:ok, assign(socket, :points, points)}
   end
 
