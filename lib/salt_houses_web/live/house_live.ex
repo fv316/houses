@@ -3,23 +3,16 @@ defmodule SaltHousesWeb.HouseLive do
 
   alias SaltHouses.House
 
-  # def render(assigns) do
-  #   IO.inspect(assigns)
-  #   ~L"""
-  #   <h1>Leader Board</h1>
-  #   Current points: <%= @points %>
-  #   <br>
-  #   <button phx-click="increment">+</button>
-  #   <button phx-click="decrement">-</button>
-  #   """
-  # end
-
   def mount(_params, _, socket) do
     House.subscribe()
     {:ok, fetch(socket)}
   end
 
-  def handle_event("complete", %{"completed_activity" => %{"member_id" => mid, "activity_id" => aid}}, socket) do
+  def handle_event(
+        "complete",
+        %{"completed_activity" => %{"member_id" => mid, "activity_id" => aid}},
+        socket
+      ) do
     House.complete_activity(mid, aid)
     {:noreply, socket}
   end
