@@ -17,8 +17,14 @@ defmodule SaltHousesWeb.Router do
   scope "/", SaltHousesWeb do
     pipe_through :browser
 
-    # , layout: {SaltHousesWeb.LayoutView, "app.html"}
-    live "/board", HouseLive, :index
+    live "/users", UserLive.Index, :index
+    live "/users/new", UserLive.Index, :new
+    live "/users/:id/edit", UserLive.Index, :edit
+
+    live "/users/:id", UserLive.Show, :show
+    live "/users/:id/show/edit", UserLive.Show, :edit
+
+    live "/board", HouseLive.Index, :index
     live "/", PageLive, :index
   end
 

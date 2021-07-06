@@ -11,7 +11,9 @@ defmodule SaltHouses.House do
     Phoenix.PubSub.broadcast(SaltHouses.PubSub, @topic, {__MODULE__, event, result})
   end
 
-  def get_points(), do: Data.get_house_points()
+  def get_house_points(), do: Data.get_house_points()
+
+  def get_member_points(), do: Data.get_member_points()
 
   def get_activities() do
     case Data.get_all_activities() do

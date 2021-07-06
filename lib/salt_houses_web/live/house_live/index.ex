@@ -1,4 +1,4 @@
-defmodule SaltHousesWeb.HouseLive do
+defmodule SaltHousesWeb.HouseLive.Index do
   use SaltHousesWeb, :live_view
 
   alias SaltHouses.House
@@ -22,9 +22,10 @@ defmodule SaltHousesWeb.HouseLive do
   end
 
   defp fetch(socket) do
-    points = House.get_points()
+    house_points = House.get_house_points()
+    member_points = House.get_member_points()
     activities = House.get_activities()
     members = House.get_members()
-    assign(socket, %{houses: points, activities: activities, members: members})
+    assign(socket, %{house_points: house_points, member_points: member_points, activities: activities, members: members})
   end
 end

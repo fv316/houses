@@ -1,20 +1,24 @@
-
-
 <form action="#" phx-submit="complete">
   <%= text_input :completed_activity, :member_id, placeholder: "Enter the member id" %>
   <%= text_input :completed_activity, :activity_id, placeholder: "Enter the activity id" %>
   <%= submit "Submit", phx_disable_with: "Submitting..." %>
 </form>
 
-<h1>Leader Board</h1>
-  <%= for house <- @houses do %>
+<h1>House Points</h1>
+  <%= for house <- @house_points do %>
   <div>
     <%= house.name %> = <%= house.points %>
   </div>
 <% end %>
 
-<h1>Task Board</h1>
+<h1>Member Points</h1>
+  <%= for member <- @member_points do %>
+  <div>
+    <%= member.name %> = <%= member.points %>
+  </div>
+<% end %>
 
+<h1>Task Board</h1>
 <%= for activity <- @activities do %>
   <div>
     <h3>
