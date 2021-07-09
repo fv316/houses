@@ -1,7 +1,7 @@
-defmodule SaltHousesWeb.UserLive.Show do
+defmodule SaltHousesWeb.ActivityLive.Show do
   use SaltHousesWeb, :live_view
 
-  alias SaltHouses.Accounts
+  alias SaltHouses.House
 
   @impl true
   def mount(_params, _session, socket) do
@@ -13,9 +13,9 @@ defmodule SaltHousesWeb.UserLive.Show do
     {:noreply,
      socket
      |> assign(:page_title, page_title(socket.assigns.live_action))
-     |> assign(:user, Accounts.get_user!(id))}
+     |> assign(:activity, House.get_activity!(id))}
   end
 
-  defp page_title(:show), do: "Show User"
-  defp page_title(:edit), do: "Edit User"
+  defp page_title(:show), do: "Show Activity"
+  defp page_title(:edit), do: "Edit Activity"
 end

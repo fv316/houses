@@ -13,10 +13,10 @@
 alias SaltHouses.House.Schemas.{Activity, CompletedActivity, House, Member}
 alias SaltHouses.Repo
 
-Repo.insert!(%House{name: "North Lair Team", description: "The brave"})
-Repo.insert!(%House{name: "Duke Smith Team", description: "The mighty"})
-Repo.insert!(%House{name: "Fire Plato Team", description: "The sly"})
-Repo.insert!(%House{name: "Pigeon Hook Team", description: "The evil"})
+Repo.insert!(%House{name: "Percivale Team", description: "The brave"})
+Repo.insert!(%House{name: "Bedivere Team", description: "The mighty"})
+Repo.insert!(%House{name: "Alymere Team", description: "The sly"})
+Repo.insert!(%House{name: "Galahad Team", description: "The evil"})
 
 member =
   Repo.insert!(%Member{name: "Francisco Correia", date_of_birth: ~D"2000-12-12", house_id: 1})

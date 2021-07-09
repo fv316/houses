@@ -1,38 +1,9 @@
-<form action="#" phx-submit="complete">
-  <%= text_input :completed_activity, :member_id, placeholder: "Enter the member id" %>
-  <%= text_input :completed_activity, :activity_id, placeholder: "Enter the activity id" %>
-  <%= submit "Submit", phx_disable_with: "Submitting..." %>
-</form>
-
 <h1>House Points</h1>
   <%= for house <- @house_points do %>
   <div>
-    <%= house.name %> = <%= house.points %>
+    <h3> <%= house.name %> </h1>
+    <%= house.points %>
   </div>
 <% end %>
 
-<h1>Member Points</h1>
-  <%= for member <- @member_points do %>
-  <div>
-    <%= member.name %> = <%= member.points %>
-  </div>
-<% end %>
-
-<h1>Task Board</h1>
-<%= for activity <- @activities do %>
-  <div>
-    <h3>
-      <%= activity.name %> (<%= activity.id %>)
-    </h3>
-    Points allocated: <%= activity.points %>
-    <br>
-    Description: <%= activity.description %>
-  </div>
-<% end %>
-
-<h1>Member Board</h1>
-<%= for member <- @members do %>
-  <div>
-      <%= member.name %> (<%= member.id %>)
-  </div>
-<% end %>
+<span><%= live_patch "Activity List", to: Routes.activity_index_path(@socket, :index) %></span>

@@ -9,11 +9,11 @@ defmodule SaltHousesWeb.LiveHelpers do
 
   ## Examples
 
-      <%= live_modal @socket, SaltHousesWeb.UserLive.FormComponent,
+      <%= live_modal @socket, SaltHousesWeb.ActivityLive.FormComponent,
         id: @user.id || :new,
         action: @live_action,
         user: @user,
-        return_to: Routes.user_index_path(@socket, :index) %>
+        return_to: Routes.activity_index_path(@socket, :index) %>
   """
   def live_modal(component, opts) do
     path = Keyword.fetch!(opts, :return_to)
