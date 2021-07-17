@@ -5,8 +5,22 @@ defmodule SaltHousesWeb.ActivityLiveTest do
 
   alias SaltHouses.House
 
-  @create_attrs %{active: true, description: "some description", form: %{}, id: "7488a646-e31f-11e4-aace-600308960662", name: "some name", points: 42}
-  @update_attrs %{active: false, description: "some updated description", form: %{}, id: "7488a646-e31f-11e4-aace-600308960668", name: "some updated name", points: 43}
+  @create_attrs %{
+    active: true,
+    description: "some description",
+    form: %{},
+    id: "7488a646-e31f-11e4-aace-600308960662",
+    name: "some name",
+    points: 42
+  }
+  @update_attrs %{
+    active: false,
+    description: "some updated description",
+    form: %{},
+    id: "7488a646-e31f-11e4-aace-600308960668",
+    name: "some updated name",
+    points: 43
+  }
   @invalid_attrs %{active: nil, description: nil, form: nil, id: nil, name: nil, points: nil}
 
   defp fixture(:activity) do

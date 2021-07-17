@@ -18,7 +18,7 @@ defmodule SaltHousesWeb.Router do
   end
 
   scope "/", SaltHousesWeb do
-    pipe_through :browser
+    pipe_through [:browser, :require_authenticated_user]
 
     live "/activities", ActivityLive.Index, :index
     live "/activities/new", ActivityLive.Index, :new

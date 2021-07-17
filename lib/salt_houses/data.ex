@@ -83,7 +83,7 @@ defmodule SaltHouses.House.Data do
     |> join(:inner, [c, a, m], h in House, on: m.house_id == h.id)
     |> group_by([c, a, m, h], h.name)
     |> select([c, a, m, h], %{name: h.name, points: sum(a.points)})
-    |> order_by([c, a, m, h], [desc: sum(a.points)])
+    |> order_by([c, a, m, h], desc: sum(a.points))
     |> Repo.all()
   end
 
@@ -93,7 +93,7 @@ defmodule SaltHouses.House.Data do
     |> join(:inner, [c, a], m in Member, on: c.member_id == m.id)
     |> group_by([c, a, m], m.name)
     |> select([c, a, m], %{name: m.name, points: sum(a.points)})
-    |> order_by([c, a, m], [desc: sum(a.points)])
+    |> order_by([c, a, m], desc: sum(a.points))
     |> Repo.all()
   end
 end
