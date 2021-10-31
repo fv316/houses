@@ -1,0 +1,295 @@
+openapi: 3.1.0
+info:
+  title: houses
+  version: '1.0'
+  contact:
+    name: Francisco Correia
+  description: Houses of Salt is the API to interact with the internal point system
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /house:
+    post:
+      summary: Create House
+      operationId: post-house
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/house'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+      description: Create a new house.
+      x-internal: true
+      tags:
+        - house
+  '/house/{houseId}':
+    parameters:
+      - schema:
+          type: string
+        name: houseId
+        in: path
+        required: true
+    get:
+      summary: Get House Info by House ID
+      tags:
+        - house
+      operationId: get-users-userId
+      description: Retrieve the information of the house with the matching house ID.
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: houseId
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/house'
+    put:
+      summary: Update House Info by House ID
+      operationId: put-house
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/house'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+        description: ''
+      tags:
+        - house
+      description: Edit the information of the house with the matching house ID.
+  /activity:
+    post:
+      summary: Create Activity
+      operationId: post-activity
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/activity'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                points:
+                  type: string
+                description:
+                  type: string
+                user:
+                  type: string
+      tags:
+        - house
+      description: Create a new activity.
+  '/activity/{activityId}':
+    parameters:
+      - schema:
+          type: string
+        name: activityId
+        in: path
+        required: true
+    get:
+      summary: Get Activity Info by Activity ID
+      operationId: get-activity
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/activity'
+      description: Retrieve the information of the activity with the matching activity ID.
+      tags:
+        - house
+    put:
+      summary: Update Activity Info by Activity ID
+      operationId: put-activity
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/activity'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                points:
+                  type: string
+                description:
+                  type: string
+                user:
+                  type: string
+      description: Edit the information of the activity with the matching activity ID.
+      tags:
+        - house
+  /completed_activity:
+    post:
+      summary: Complete Activity
+      operationId: post-completed_activity
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/completed_activity'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: string
+                activity:
+                  type: string
+      description: Complete an activity.
+      tags:
+        - house
+  '/completed_activity/{completedActivityId}':
+    get:
+      summary: Get Completed Activity Info by Completed Activity ID
+      tags:
+        - house
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/completed_activity'
+      operationId: get-completed_activity
+      description: Retrieve the information of the completed activity with the matching completed activity ID.
+    put:
+      summary: Update Completed Activity Info by Completed Activity ID
+      operationId: put-completed_activity
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/completed_activity'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                activity:
+                  type: string
+                user:
+                  type: string
+      description: Retrieve the information of the completed activity with the matching completed activity ID.
+      tags:
+        - house
+    parameters:
+      - schema:
+          type: string
+        name: completedActivityId
+        in: path
+        required: true
+components:
+  schemas:
+    house:
+      title: house
+      type: object
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+        message:
+          type: string
+        house:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+            points:
+              type: string
+            created_at:
+              type: string
+            updated_at:
+              type: string
+    activity:
+      title: activity
+      type: object
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+        message:
+          type: string
+        activity:
+          type: object
+          properties:
+            name:
+              type: string
+            points:
+              type: string
+            created_by:
+              type: string
+            created_at:
+              type: string
+            updated_at:
+              type: string
+            description:
+              type: string
+    completed_activity:
+      title: completed_activity
+      type: object
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+        message:
+          type: string
+        completed_activity:
+          type: object
+          properties:
+            activity:
+              type: string
+            user:
+              type: string
+            created_at:
+              type: string
+            updated_at:
+              type: string
+tags:
+  - name: house
