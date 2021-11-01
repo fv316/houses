@@ -1,10 +1,10 @@
-defmodule SaltHouses.House.Schemas.House do
+defmodule SaltHouses.Houses.Schemas.House do
   @moduledoc false
   use Ecto.Schema
 
   import Ecto.Changeset
 
-  alias SaltHouses.House.Data
+  alias SaltHouses.Houses.Data
 
   @primary_key {:id, :id, autogenerate: true}
   @foreign_key_type :id

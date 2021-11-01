@@ -6,7 +6,6 @@ defmodule SaltHouses.Repo.Migrations.CreateActivity do
       add :id, :binary_id, primary_key: true
       add :name, :string, null: false
       add :description, :string
-      add :form, :map, null: false
       add :points, :integer, null: false
       add :active?, :boolean, null: false, default: true
       timestamps()

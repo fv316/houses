@@ -4,9 +4,8 @@ defmodule SaltHouses.Repo.Migrations.CreateCompletedActivity do
   def change do
     create table(:completed_activity, primary_key: false) do
       add :id, :binary_id, primary_key: true
-      add :member_id, references(:member, on_delete: :nothing, type: :binary_id)
+      add :user_id, references(:users, on_delete: :nothing)
       add :activity_id, references(:activity, on_delete: :nothing, type: :binary_id)
-      add :form, :map
 
       timestamps()
     end

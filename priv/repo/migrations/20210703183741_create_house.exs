@@ -5,7 +5,6 @@ defmodule SaltHouses.Repo.Migrations.CreateHouse do
     create table(:house, primary_key: false) do
       add :id, :serial, primary_key: true
       add :name, :string, null: false
-      add :description, :string
       timestamps()
     end
   end

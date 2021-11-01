@@ -2,7 +2,7 @@ defmodule SaltHousesWeb.ActivityLive.Index do
   use SaltHousesWeb, :live_view
 
   alias SaltHouses.House
-  alias SaltHouses.House.Schemas.Activity
+  alias SaltHouses.Houses.Schemas.Activity
 
   @impl true
   def mount(_params, _session, socket) do

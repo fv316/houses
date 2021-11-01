@@ -1,25 +1,23 @@
-defmodule SaltHouses.House.Schemas.CompletedActivity do
+defmodule SaltHouses.Houses.Schemas.CompletedActivity do
   @moduledoc false
   use Ecto.Schema
 
   import Ecto.Changeset
 
-  alias SaltHouses.House.Schemas.{Activity, Member}
+  alias SaltHouses.Accounts.User
+  alias SaltHouses.Houses.Schemas.Activity
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
   schema "completed_activity" do
-    field :form, :map
-
     belongs_to :activity, Activity,
       foreign_key: :activity_id,
       primary_key: false,
       type: :binary_id
 
-    belongs_to :member, Member,
-      foreign_key: :member_id,
-      primary_key: false,
-      type: :binary_id
+    belongs_to :user, User,
+      foreign_key: :user_id,
+      primary_key: false
 
     timestamps()
   end

@@ -1,4 +1,4 @@
-defmodule SaltHouses.House.Schemas.Activity do
+defmodule SaltHouses.Houses.Schemas.Activity do
   @moduledoc false
   use Ecto.Schema
 
@@ -9,7 +9,6 @@ defmodule SaltHouses.House.Schemas.Activity do
   schema "activity" do
     field :name, :string, null: false
     field :description, :string
-    field :form, :map, null: false
     field :points, :integer, null: false
     field :active?, :boolean, null: false, default: true
     timestamps()

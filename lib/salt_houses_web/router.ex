@@ -27,8 +27,7 @@ defmodule SaltHousesWeb.Router do
     live "/activities/:id", ActivityLive.Show, :show
     live "/activities/:id/show/edit", ActivityLive.Show, :edit
 
-    live "/board", HouseLive.Index, :index
-    live "/", PageLive, :index
+    live "/", HouseLive.Index, :index
   end
 
   # Other scopes may use custom stacks.
